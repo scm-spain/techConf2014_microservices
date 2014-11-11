@@ -1,6 +1,5 @@
 package io.scmspain.tech2014.server.simple;
 
-
 import com.netflix.karyon.transport.http.SimpleUriRouter;
 import com.netflix.karyon.transport.http.health.HealthCheckEndpoint;
 import io.netty.buffer.ByteBuf;
@@ -10,11 +9,7 @@ import io.reactivex.netty.protocol.http.server.RequestHandler;
 import io.scmspain.tech2014.common.health.HealthCheck;
 import rx.Observable;
 
-/**
- * A {@link RequestHandler} implementation for this example.
- *
- * @author Nitesh Kant
- */
+
 public class SimpleRouter implements RequestHandler<ByteBuf, ByteBuf> {
 
     private final SimpleUriRouter<ByteBuf, ByteBuf> delegate;
