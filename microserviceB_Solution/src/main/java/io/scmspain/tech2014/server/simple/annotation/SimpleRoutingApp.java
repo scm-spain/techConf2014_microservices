@@ -47,7 +47,8 @@ public interface SimpleRoutingApp {
             bind(AuthenticationService.class).to(AuthenticationServiceImpl.class);
             interceptorSupport().forUri("/*").intercept(LoggingInterceptor.class);
             interceptorSupport().forUri("/hello").interceptIn(AuthInterceptor.class);
-            
+            interceptorSupport().forUri("/user").interceptIn(AuthInterceptor.class);
+
             server().port(8887);
         }
     }
