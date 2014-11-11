@@ -18,7 +18,7 @@ import io.scmspain.tech2014.server.simple.SimpleRouter;
  * @author Tomasz Bak
  */
 @ArchaiusBootstrap
-@KaryonBootstrap(name = "hello-netflix-oss", healthcheck = HealthCheck.class)
+@KaryonBootstrap(name = "microservice-a", healthcheck = HealthCheck.class)
 @Singleton
 @Modules(include = {
         //ShutdownModule.class,
