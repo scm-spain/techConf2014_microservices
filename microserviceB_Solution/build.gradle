@@ -45,9 +45,11 @@ task runSimpleRouterAnnotationHelloNOSS (dependsOn: [classes], type: JavaExec) {
     main = "com.netflix.karyon.KaryonRunner"
     classpath = sourceSets.main.runtimeClasspath
 
-    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006"
     systemProperty 'java.awt.headless', 'true'
     systemProperty 'archaius.deployment.environment', 'dev'
+    systemProperty 'netflix.platform.admin.resources.port', '8076'
+
 
     args = ["io.scmspain.tech2014.server.simple.annotation.SimpleRoutingApp"]
 }

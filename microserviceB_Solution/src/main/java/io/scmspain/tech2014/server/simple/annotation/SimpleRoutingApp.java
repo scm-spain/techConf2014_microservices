@@ -1,5 +1,6 @@
 package io.scmspain.tech2014.server.simple.annotation;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.netflix.adminresources.resources.KaryonWebAdminModule;
 import com.netflix.governator.annotations.Modules;
@@ -34,6 +35,7 @@ public interface SimpleRoutingApp {
 
     class KaryonRxRouterModuleImpl extends KaryonHttpModule<ByteBuf, ByteBuf> {
 
+
         public KaryonRxRouterModuleImpl() {
             super("httpServerA", ByteBuf.class, ByteBuf.class);
         }
@@ -45,8 +47,8 @@ public interface SimpleRoutingApp {
             bind(AuthenticationService.class).to(AuthenticationServiceImpl.class);
             interceptorSupport().forUri("/*").intercept(LoggingInterceptor.class);
             interceptorSupport().forUri("/hello").interceptIn(AuthInterceptor.class);
-
-            server().port(8888);
+            
+            server().port(8887);
         }
     }
 }
