@@ -23,9 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 
-/**
- * @author Nitesh Kant (nkant@netflix.com)
- */
 @Singleton
 public class HealthCheck implements HealthCheckHandler {
 

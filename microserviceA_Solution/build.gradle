@@ -32,6 +32,9 @@ dependencies {
     compile 'io.netty:netty-all:4.0.23.Final'
     runtime 'org.slf4j:slf4j-simple:1.7.0'
 
+    compile 'com.netflix.karyon:karyon-eureka:2.1.00-RC6'
+
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-all:1.9.5"
 }
@@ -49,4 +52,8 @@ task runSimpleRouterAnnotationHelloNOSS (dependsOn: [classes], type: JavaExec) {
     systemProperty 'archaius.deployment.environment', 'dev'
 
     args = ["io.scmspain.tech2014.server.simple.annotation.SimpleRoutingApp"]
+}
+
+task killGradleInstances(type: Exec) {
+    commandLine './killGradle.sh'
 }
