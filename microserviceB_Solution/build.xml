@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="microserviceB_Solution" basedir=".">
+
+
+    <target name="run">
+        <exec executable="./gradlew">
+            <arg value="runSimpleRouterAnnotationHelloNOSS"/>
+        </exec>
+    </target>
+
+</project>
