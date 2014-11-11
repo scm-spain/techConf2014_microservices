@@ -4,7 +4,6 @@ import com.google.inject.Singleton;
 import com.netflix.adminresources.resources.KaryonWebAdminModule;
 import com.netflix.governator.annotations.Modules;
 import com.netflix.karyon.KaryonBootstrap;
-import com.netflix.karyon.ShutdownModule;
 import com.netflix.karyon.archaius.ArchaiusBootstrap;
 import com.netflix.karyon.eureka.KaryonEurekaModule;
 import com.netflix.karyon.servo.KaryonServoModule;

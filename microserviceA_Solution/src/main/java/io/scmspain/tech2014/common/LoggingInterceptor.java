@@ -1,9 +1,9 @@
 package io.scmspain.tech2014.common;
 
+import com.netflix.karyon.transport.interceptor.DuplexInterceptor;
 import io.netty.buffer.ByteBuf;
 import io.reactivex.netty.protocol.http.server.HttpServerRequest;
 import io.reactivex.netty.protocol.http.server.HttpServerResponse;
-import com.netflix.karyon.transport.interceptor.DuplexInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rx.Observable;

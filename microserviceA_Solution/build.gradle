@@ -40,7 +40,7 @@ dependencies {
 }
 
 
-task runSimpleRouterAnnotationMicroserviceA (dependsOn: [classes], type: JavaExec) {
+task runSimpleRouterAnnotationMicroserviceA(dependsOn: [classes], type: JavaExec) {
     group = "Examples"
     description = "Run simple URI router based Hello NOSS server using annotation based bootstrapping."
 
