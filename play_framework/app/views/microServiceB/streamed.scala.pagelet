@@ -3,7 +3,8 @@
 <html>
   @views.pagelet.layout.header()
   <body>
-    @views.pagelet.profileUpdates.body()
+    @views.pagelet.navbar.navbar("msB")
+    @views.pagelet.microServiceB.body()
     @views.pagelet.layout.scripts()
     @body
   </body>

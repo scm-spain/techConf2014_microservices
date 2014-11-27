@@ -1,0 +1,12 @@
+@(active: String)
+<div class="kh-masthead">
+    <div class="container">
+      <nav class="kh-nav">
+        <a class="kh-nav-item @if(active == "home"){active}" href="@routes.Aggregator.index">Home</a>
+        <a class="kh-nav-item @if(active == "msA"){active}" href="@routes.MicroServiceA.index">microservice A</a>
+        <a class="kh-nav-item @if(active == "msB"){active}" href="@routes.MicroServiceB.index">microservice B</a>
+        <a class="kh-nav-item @if(active == "about"){active}" href="#">About us</a>
+        <a class="kh-nav-item pull-right" href="https://github.com/scmspain-segundamano/techConf2014_microservices"><i class="fa fa-github">techConf</i></a>
+      </nav>
+    </div>
+</div>
