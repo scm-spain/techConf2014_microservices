@@ -38,7 +38,7 @@ class MicroServiceBCommand extends HystrixCommand[Int](MicroServiceBCommand.key)
     simulateNetworkLatency(50, 125)
     simulateFailUnderLoad(0.01)
     simulateNetworkSpike(15, 650, 2250)
-
+    
     between(20, 35)
   }
 
