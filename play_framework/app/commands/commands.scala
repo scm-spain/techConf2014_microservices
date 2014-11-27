@@ -1,32 +1,12 @@
 package commands
 
 import com.netflix.hystrix.HystrixCommand.Setter
-import com.netflix.hystrix.{HystrixCommandKey, HystrixCommandProperties, HystrixCommandGroupKey, HystrixCommand}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import com.netflix.hystrix.{HystrixCommand, HystrixCommandGroupKey, HystrixCommandKey}
 
 object MicroServiceACommand {
   private final def key = Setter
     .withGroupKey(HystrixCommandGroupKey.Factory.asKey("microservices"))
-    .andCommandKey(HystrixCommandKey.Factory.asKey("A"))
+    .andCommandKey(HystrixCommandKey.Factory.asKey("MicroServiceA"))
 
   def apply() = new MicroServiceACommand
 }
@@ -47,7 +27,7 @@ class MicroServiceACommand extends HystrixCommand[Int](MicroServiceACommand.key)
 object MicroServiceBCommand {
   private final def key = Setter
     .withGroupKey(HystrixCommandGroupKey.Factory.asKey("microservices"))
-    .andCommandKey(HystrixCommandKey.Factory.asKey("B"))
+    .andCommandKey(HystrixCommandKey.Factory.asKey("MicroServiceB"))
 
   def apply() = new MicroServiceBCommand
 }
