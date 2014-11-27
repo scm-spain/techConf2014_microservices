@@ -15,12 +15,21 @@ public class SimpleRouter implements RequestHandler<ByteBuf, ByteBuf> {
     private final SimpleUriRouter<ByteBuf, ByteBuf> delegate;
 
     public SimpleRouter() {
-        AddEndpoint addEndPoint = new AddEndpoint();
+        final AddEndpoint addEndPoint = new AddEndpoint();
         final FriendsEndpoint friendsEndpoint = new FriendsEndpoint();
 
         delegate = new SimpleUriRouter<ByteBuf, ByteBuf>();
 
         delegate.addUri("/healthcheck", new HealthCheckEndpoint(new HealthCheck()))
+                .addUri("/add/*",
+                        new RequestHandler<ByteBuf, ByteBuf>() {
+                            @Override
+                            public Observable<Void> handle(
+                                    HttpServerRequest<ByteBuf> request,
+                                    HttpServerResponse<ByteBuf> response) {
+                                return addEndPoint.add(request, response);
+                            }
+                        })
                 .addUri("/friends/*",
                         new RequestHandler<ByteBuf, ByteBuf>() {
                             @Override
