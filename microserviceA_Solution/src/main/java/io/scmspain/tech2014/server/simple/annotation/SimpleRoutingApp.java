@@ -38,10 +38,6 @@ public interface SimpleRoutingApp {
         @Override
         protected void configureServer() {
             bindRouter().toInstance(new SimpleRouter());
-
-            interceptorSupport().forUri("/*").intercept(LoggingInterceptor.class);
-
-            server().port(8888);
         }
     }
 }
