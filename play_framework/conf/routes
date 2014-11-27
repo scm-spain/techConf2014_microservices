@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET        /                       controllers.Aggregator.index
+GET        /blocking               controllers.Aggregator.blocking
+
+GET        /pv                     controllers.ProfileViews.index
+GET        /pu                     controllers.ProfileUpdates.index
+GET        /nk                     controllers.NewKittens.index
+
+GET        /dashboard              controllers.Assets.at(path="/public", file="/dashboard/monitor/monitor.html")
+GET        /hystrix.stream         controllers.HystrixMetricsStream.stream(delay: Option[Int])
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file           controllers.Assets.at(path="/public", file)
