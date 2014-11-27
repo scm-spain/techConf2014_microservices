@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<project name="microserviceA_Solution" basedir=".">
+
+    <target name="run">
+        <exec executable="./gradlew">
+            <arg value="runSimpleRouterAnnotationMicroserviceA"/>
+        </exec>
+    </target>
+
+</project>
