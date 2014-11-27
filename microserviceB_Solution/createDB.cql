@@ -12,6 +12,21 @@ CREATE TABLE MS_SOLUTION_B.USERS (
 
 
 INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
-VALUES('ramonibz@gmail.com', 'password', 'Ramon', 'Rius', 'M');
+VALUES('cayetana@gmail.com', 'password', 'Cayetana', 'Martinez de Irujo', 'F');
+
+INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
+VALUES('paquirrin@gmail.com', 'password', 'Paquirrin', '', 'M');
+
+INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
+VALUES('torrente@gmail.com', 'password', 'Torrente', 'El brazo tonto de la ley', 'M');
+
+INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
+VALUES('email', 'π con todos sus decimales', 'Chuck', 'Norris', 'M-F');
+
+INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
+VALUES('obi-wan@gmail.com', 'password', 'Obi-Wan', 'Kenobi', 'M');
+
+INSERT INTO MS_SOLUTION_B.USERS(EMAIL, PASSWORD, NAME, SURNAME, GENDER)
+VALUES('pocholo@gmail.com', 'password', 'Pocholo', '', 'M');
 
 
