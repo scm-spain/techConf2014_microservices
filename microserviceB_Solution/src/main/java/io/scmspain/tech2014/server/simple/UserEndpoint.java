@@ -21,9 +21,7 @@ import rx.Observable;
 
 
 /**
- * Endpoint to retieve users from Cassandra DB
- *
- * Created by ramonriusgrasset on 11/11/14.
+ * Endpoint to retrieve users from Cassandra DB
  */
 public class UserEndpoint {
 
@@ -52,7 +50,7 @@ public class UserEndpoint {
             CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where id = ?;");
             operationResult = cqlQuery.asPreparedStatement().withIntegerValue(id).execute();
         } catch (ConnectionException e) {
-            logger.error("Exception Querting to Cassandra", e);
+            logger.error("Exception Querying to Cassandra", e);
             return Observable.error(e);
         }
 
