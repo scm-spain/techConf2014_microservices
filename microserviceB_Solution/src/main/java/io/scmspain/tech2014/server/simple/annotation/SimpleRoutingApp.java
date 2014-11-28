@@ -7,6 +7,7 @@ import com.netflix.governator.annotations.Modules;
 import com.netflix.karyon.KaryonBootstrap;
 import com.netflix.karyon.ShutdownModule;
 import com.netflix.karyon.archaius.ArchaiusBootstrap;
+import com.netflix.karyon.eureka.KaryonEurekaModule;
 import com.netflix.karyon.servo.KaryonServoModule;
 import com.netflix.karyon.transport.http.KaryonHttpModule;
 import io.netty.buffer.ByteBuf;
@@ -28,7 +29,7 @@ import io.scmspain.tech2014.server.simple.SimpleRouter;
         //ShutdownModule.class,
         KaryonServoModule.class,
         KaryonWebAdminModule.class,
-        // KaryonEurekaModule.class, // Uncomment this to enable Eureka client.
+        KaryonEurekaModule.class, // Uncomment this to enable Eureka client.
         SimpleRoutingApp.KaryonRxRouterModuleImpl.class
 })
 public interface SimpleRoutingApp {
