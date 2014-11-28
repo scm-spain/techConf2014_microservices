@@ -38,6 +38,7 @@ public class ItemsRepo {
         ls3.add("Carlitos");
         ls3.add("Luis Cuenca");
 
+        ls4.add("God");
         ls4.add("Abomasnow");
         ls4.add("Abra");
         ls4.add("Absol");
