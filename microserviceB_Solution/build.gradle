@@ -38,18 +38,22 @@ dependencies {
 }
 
 
-task runSimpleRouterAnnotationHelloNOSS (dependsOn: [classes], type: JavaExec) {
+task runMicroServiceUsers (dependsOn: [classes], type: JavaExec) {
     group = "Examples"
-    description = "Run simple URI router based Hello NOSS server using annotation based bootstrapping."
+    description = "Run a simple microservice."
 
     main = "com.netflix.karyon.KaryonRunner"
     classpath = sourceSets.main.runtimeClasspath
 
-    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006"
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5007"
     systemProperty 'java.awt.headless', 'true'
     systemProperty 'archaius.deployment.environment', 'dev'
     systemProperty 'netflix.platform.admin.resources.port', '8076'
 
 
     args = ["io.scmspain.tech2014.server.simple.annotation.SimpleRoutingApp"]
+}
+
+task killGradleInstances(type: Exec) {
+    commandLine './killGradle.sh'
 }

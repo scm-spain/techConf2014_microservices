@@ -9,7 +9,6 @@ import com.netflix.astyanax.model.Row;
 import com.netflix.astyanax.query.CqlQuery;
 import com.netflix.astyanax.serializers.StringSerializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import io.reactivex.netty.channel.StringTransformer;
 import io.reactivex.netty.protocol.http.server.HttpServerRequest;
 import io.reactivex.netty.protocol.http.server.HttpServerResponse;
@@ -40,7 +39,7 @@ public class UserEndpoint {
     public Observable<Void> getUser(HttpServerRequest<ByteBuf> request, HttpServerResponse<ByteBuf> response){
 
         int prefixLength = "/user/".length();
-        String email = request.getPath().substring(prefixLength);
+        Integer id = Integer.parseInt(request.getPath().substring(prefixLength));
 
         Keyspace keyspace = CassandraContext.getContext().getClient();
 
@@ -50,8 +49,8 @@ public class UserEndpoint {
 
         OperationResult<CqlResult<String, String>> operationResult = null;
         try {
-            CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where email = ?;");
-            operationResult = cqlQuery.asPreparedStatement().withStringValue(email).execute();
+            CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where id = ?;");
+            operationResult = cqlQuery.asPreparedStatement().withIntegerValue(id).execute();
         } catch (ConnectionException e) {
             logger.error("Exception Querting to Cassandra", e);
             return Observable.error(e);
@@ -60,8 +59,14 @@ public class UserEndpoint {
         JSONObject content = new JSONObject();
         try {
             for (Row<String, String> row : operationResult.getResult().getRows()) {
-                content.accumulate("user", row.getColumns().getColumnByName("email").getStringValue());
+                JSONObject rowJson = new JSONObject();
+                rowJson.accumulate("email", row.getColumns().getColumnByName("email").getStringValue());
+                rowJson.accumulate("name", row.getColumns().getColumnByName("name").getStringValue());
+                rowJson.accumulate("surname", row.getColumns().getColumnByName("surname").getStringValue());
+                rowJson.accumulate("gender", row.getColumns().getColumnByName("gender").getStringValue());
+                content.accumulate("user", rowJson);
             }
+
         }catch (JSONException e){
             logger.error("Exception Querting to Cassandra", e);
             return Observable.error(e);
