@@ -40,7 +40,7 @@ dependencies {
 }
 
 
-task runSimpleRouterAnnotationMicroserviceA(dependsOn: [classes], type: JavaExec) {
+task runMicroserviceA(dependsOn: [classes], type: JavaExec) {
     group = "Examples"
     description = "Run simple URI router based Hello NOSS server using annotation based bootstrapping."
 
@@ -50,6 +50,7 @@ task runSimpleRouterAnnotationMicroserviceA(dependsOn: [classes], type: JavaExec
     jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
     systemProperty 'java.awt.headless', 'true'
     systemProperty 'archaius.deployment.environment', 'dev'
+    systemProperty 'netflix.platform.admin.resources.port', '8071'
 
     args = ["io.scmspain.tech2014.server.simple.annotation.SimpleRoutingApp"]
 }

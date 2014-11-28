@@ -25,7 +25,7 @@ import io.scmspain.tech2014.server.simple.SimpleRouter;
 @KaryonBootstrap(name = "hello-netflix-oss", healthcheck = HealthCheck.class)
 @Singleton
 @Modules(include = {
-        ShutdownModule.class,
+        //ShutdownModule.class,
         KaryonServoModule.class,
         KaryonWebAdminModule.class,
         // KaryonEurekaModule.class, // Uncomment this to enable Eureka client.
