@@ -253,8 +253,8 @@ public class ItemsRepo {
         map.put("Cayetana", ls1);
         map.put("Paquirrin", ls2);
         map.put("Torrente",ls3);
-        map.put("Chuck norris", ls4);
-        map.put("Obi-Wan Kenobi", ls5);
+        map.put("Chuck-norris", ls4);
+        map.put("Obi-Wan-Kenobi", ls5);
         map.put("Pocholo", null);
 
 

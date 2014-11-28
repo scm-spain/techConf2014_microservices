@@ -31,7 +31,6 @@ public class FriendsEndpoint {
             }else{
                 content.put("friends", email + " has no friends :(");
             }
-
         } catch (Exception e) {
             logger.error("Error creating json response.", e);
             throw new RuntimeException("Fuck!!", e);
