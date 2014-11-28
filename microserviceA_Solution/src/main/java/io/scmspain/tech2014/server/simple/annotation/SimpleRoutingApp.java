@@ -39,9 +39,8 @@ public interface SimpleRoutingApp {
         protected void configureServer() {
             bindRouter().toInstance(new SimpleRouter());
 
-            interceptorSupport().forUri("/*").intercept(LoggingInterceptor.class);
+            //code
 
-            server().port(8888);
         }
     }
 }

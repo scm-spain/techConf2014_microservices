@@ -21,15 +21,7 @@ public class SimpleRouter implements RequestHandler<ByteBuf, ByteBuf> {
         delegate = new SimpleUriRouter<ByteBuf, ByteBuf>();
 
         delegate.addUri("/healthcheck", new HealthCheckEndpoint(new HealthCheck()))
-                .addUri("/add/*",
-                        new RequestHandler<ByteBuf, ByteBuf>() {
-                            @Override
-                            public Observable<Void> handle(
-                                    HttpServerRequest<ByteBuf> request,
-                                    HttpServerResponse<ByteBuf> response) {
-                                return addEndPoint.add(request, response);
-                            }
-                        })
+
                 .addUri("/friends/*",
                         new RequestHandler<ByteBuf, ByteBuf>() {
                             @Override

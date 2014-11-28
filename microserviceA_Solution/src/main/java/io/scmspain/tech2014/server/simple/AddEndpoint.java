@@ -19,16 +19,8 @@ public class AddEndpoint {
 
     public Observable<Void> add(HttpServerRequest<ByteBuf> request, HttpServerResponse<ByteBuf> response) {
         JSONObject content = new JSONObject();
-        try {
-            Map<String, List<String>> params = request.getQueryParameters();
-            int addend1 = Integer.parseInt(params.get("addend1").get(0));
-            int addend2 = Integer.parseInt(params.get("addend2").get(0));
-            content.put("result", addend1 + addend2);
 
-        } catch (Exception e) {
-            logger.error("Error creating json response.", e);
-            return Observable.error(e);
-        }
+        //code
 
         response.write(content.toString(), StringTransformer.DEFAULT_INSTANCE);
         return response.close();
