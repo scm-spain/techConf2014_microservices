@@ -4,7 +4,7 @@
 
     <target name="run">
         <exec executable="./gradlew">
-            <arg value="runSimpleRouterAnnotationHelloNOSS"/>
+            <arg value="runMicroServiceUsers"/>
         </exec>
     </target>
 
