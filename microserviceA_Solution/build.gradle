@@ -40,9 +40,9 @@ dependencies {
 }
 
 
-task runMicroserviceA(dependsOn: [classes], type: JavaExec) {
+task runMicroserviceFriends(dependsOn: [classes], type: JavaExec) {
     group = "Examples"
-    description = "Run simple URI router based Hello NOSS server using annotation based bootstrapping."
+    description = "Run simple microservices friends."
 
     main = "com.netflix.karyon.KaryonRunner"
     classpath = sourceSets.main.runtimeClasspath
