@@ -1,0 +1,11 @@
+@(body: pagelet.PageletObservable)
+<!doctype html>
+<html>
+  @views.pagelet.layout.header()
+  <body>
+    @views.pagelet.navbar.navbar("msAdd")
+    @views.pagelet.microserviceadd.body()
+    @views.pagelet.layout.scripts()
+    @body
+  </body>
+</html>

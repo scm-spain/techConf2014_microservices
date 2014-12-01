@@ -31,7 +31,7 @@ public class RibbonCommand {
         loadBalancer = LoadBalancerBuilder.newBuilder().buildFixedServerListLoadBalancer(serverList);
     }
 
-    public String call(final String path) throws Exception {
+    public String call(final String action, final String queryString, final String verb) throws Exception {
         return LoadBalancerCommand.<String>builder()
                 .withLoadBalancer(loadBalancer)
                 .build()
@@ -40,8 +40,10 @@ public class RibbonCommand {
                     public Observable<String> call(Server server) {
                         URL url;
                         try {
-                            url = new URL("http://" + server.getHost() + ":" + server.getPort() + path);
+                            String uri = "http://" + server.getHost() + ":" + server.getPort() + "/" +getUri(action, queryString);
+                            url = new URL(uri);
                             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                            conn.setRequestMethod(verb);
                             return Observable.just(getContent(conn));
                         } catch (Exception e) {
                             return Observable.error(e);
@@ -53,7 +55,14 @@ public class RibbonCommand {
     public LoadBalancerStats getLoadBalancerStats() {
         return ((BaseLoadBalancer) loadBalancer).getLoadBalancerStats();
     }
+    private String getUri(String action, String queryString){
+        String query = "";
+        if(queryString != null && !queryString.isEmpty()){
+            query = "?" + queryString;
+        }
 
+        return  action + query;
+    }
     private String getContent(HttpURLConnection connection){
         try {
             BufferedReader bufferReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));

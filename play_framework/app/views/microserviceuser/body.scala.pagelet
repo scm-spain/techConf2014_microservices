@@ -1,5 +1,5 @@
 @()
 <div class="kh-post">
   <h2 class="kh-post-title">Say hello to your first microservice</h2>
-  <div id="microserviceA"></div>
+  <div id="microserviceUser"></div>
 </div>

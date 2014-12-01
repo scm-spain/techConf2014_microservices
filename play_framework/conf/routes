@@ -8,8 +8,9 @@ GET        /blocking               controllers.Aggregator.blocking
 
 GET        /dashboard              controllers.Assets.at(path="/public", file="/dashboard/monitor/monitor.html")
 GET        /hystrix.stream         controllers.HystrixMetricsStream.stream(delay: Option[Int])
-GET        /microserviceA          controllers.MicroServiceA.index
-GET        /microserviceB          controllers.MicroServiceB.index
+GET        /microserviceUser       controllers.MicroServiceUser.index
+GET        /microserviceFriends    controllers.MicroServiceFriends.index
+GET        /microserviceAdd        controllers.MicroServiceAdd.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file           controllers.Assets.at(path="/public", file)

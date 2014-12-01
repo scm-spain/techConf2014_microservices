@@ -3,8 +3,8 @@
 <html>
   @views.pagelet.layout.header()
   <body>
-    @views.pagelet.navbar.navbar("msB")
-    @views.pagelet.microServiceB.body()
+    @views.pagelet.navbar.navbar("msUser")
+    @views.pagelet.microserviceuser.body()
     @views.pagelet.layout.scripts()
     @body
   </body>
