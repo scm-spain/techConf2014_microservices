@@ -23,8 +23,8 @@ import io.scmspain.tech2014.server.simple.SimpleRouter;
 @Modules(include = {
         //ShutdownModule.class,
        // KaryonServoModule.class,
-        //KaryonWebAdminModule.class,
-        //KaryonEurekaModule.class, // Uncomment this to enable Eureka client.
+        KaryonWebAdminModule.class,
+        KaryonEurekaModule.class, // Uncomment this to enable Eureka client.
         SimpleRoutingApp.KaryonRxRouterModuleImpl.class
 })
 public interface SimpleRoutingApp {
