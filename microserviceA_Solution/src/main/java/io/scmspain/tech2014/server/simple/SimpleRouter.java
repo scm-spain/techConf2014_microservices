@@ -15,8 +15,10 @@ public class SimpleRouter implements RequestHandler<ByteBuf, ByteBuf> {
     private final SimpleUriRouter<ByteBuf, ByteBuf> delegate;
 
     public SimpleRouter() {
-        final AddEndpoint addEndPoint = new AddEndpoint();
         final FriendsEndpoint friendsEndpoint = new FriendsEndpoint();
+
+        //Instantiate the AddEndpoint and asign it to a local variable
+
 
         delegate = new SimpleUriRouter<ByteBuf, ByteBuf>();
 
@@ -30,7 +32,7 @@ public class SimpleRouter implements RequestHandler<ByteBuf, ByteBuf> {
                                     HttpServerResponse<ByteBuf> response) {
                                 return friendsEndpoint.getFriends(request, response);
                             }
-                        });
+                        });//Remove this semicolon and add the binding for requests to "/add/*"
     }
 
     @Override

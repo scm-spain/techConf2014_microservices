@@ -4,7 +4,7 @@
 
     <target name="run">
         <exec executable="./gradlew">
-            <arg value="runMicroServiceUsers"/>
+            <arg value="runMicroServiceB"/>
         </exec>
     </target>
 

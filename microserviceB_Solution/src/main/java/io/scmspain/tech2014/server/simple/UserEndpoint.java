@@ -41,38 +41,9 @@ public class UserEndpoint {
 
         Keyspace keyspace = CassandraContext.getContext().getClient();
 
-        ColumnFamily<String, String> usersCf =
-                new ColumnFamily<String, String>("users",
-                        StringSerializer.get(), StringSerializer.get(), StringSerializer.get());
+        //Code
 
-        OperationResult<CqlResult<String, String>> operationResult = null;
-        try {
-            CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where id = ?;");
-            operationResult = cqlQuery.asPreparedStatement().withIntegerValue(id).execute();
-        } catch (ConnectionException e) {
-            logger.error("Exception Querying to Cassandra", e);
-            return Observable.error(e);
-        }
 
-        JSONObject content = new JSONObject();
-        try {
-            for (Row<String, String> row : operationResult.getResult().getRows()) {
-                JSONObject rowJson = new JSONObject();
-                rowJson.accumulate("id", row.getColumns().getColumnByName("id").getIntegerValue());
-                rowJson.accumulate("email", row.getColumns().getColumnByName("email").getStringValue());
-                rowJson.accumulate("name", row.getColumns().getColumnByName("name").getStringValue());
-                rowJson.accumulate("password", row.getColumns().getColumnByName("password").getStringValue());
-                rowJson.accumulate("surname", row.getColumns().getColumnByName("surname").getStringValue());
-                rowJson.accumulate("gender", row.getColumns().getColumnByName("gender").getStringValue());
-                content.accumulate("user", rowJson);
-            }
-
-        }catch (JSONException e){
-            logger.error("Exception Querting to Cassandra", e);
-            return Observable.error(e);
-        }
-
-        response.write(content.toString(), StringTransformer.DEFAULT_INSTANCE);
         return response.close();
     }
 
@@ -88,33 +59,9 @@ public class UserEndpoint {
 
         Keyspace keyspace = CassandraContext.getContext().getClient();
 
-        ColumnFamily<String, String> usersCf =
-                new ColumnFamily<String, String>("users",
-                        StringSerializer.get(), StringSerializer.get(), StringSerializer.get());
+        //Code
 
-        OperationResult<CqlResult<String, String>> operationResult = null;
-        try {
-            operationResult = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users;").execute();
-        } catch (ConnectionException e) {
-            logger.error("Exception Querting to Cassandra", e);
-            return Observable.error(e);
-        }
 
-        JSONObject content = new JSONObject();
-        try {
-            for (Row<String, String> row : operationResult.getResult().getRows()) {
-                JSONObject rowJson = new JSONObject();
-                rowJson.accumulate("id", row.getColumns().getColumnByName("id").getIntegerValue());
-                rowJson.accumulate("name", row.getColumns().getColumnByName("name").getStringValue());
-
-                content.accumulate("users", rowJson);
-            }
-        }catch (JSONException e){
-            logger.error("Exception Querting to Cassandra", e);
-            return Observable.error(e);
-        }
-
-        response.write(content.toString(), StringTransformer.DEFAULT_INSTANCE);
         return response.close();
     }
 
