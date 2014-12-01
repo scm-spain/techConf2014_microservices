@@ -40,7 +40,7 @@ dependencies {
 }
 
 
-task runMicroserviceFriends(dependsOn: [classes], type: JavaExec) {
+task runMicroserviceA(dependsOn: [classes], type: JavaExec) {
     group = "Examples"
     description = "Run simple microservices friends."
 
