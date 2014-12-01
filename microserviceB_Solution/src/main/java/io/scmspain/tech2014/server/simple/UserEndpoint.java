@@ -41,41 +41,49 @@ public class UserEndpoint {
         int prefixLength = "/user/".length();
         Integer id = Integer.parseInt(request.getPath().substring(prefixLength));
 
-        Keyspace keyspace = CassandraContext.getContext().getClient();
 
-        ColumnFamily<String, String> usersCf =
-                new ColumnFamily<String, String>("users",
-                        StringSerializer.get(), StringSerializer.get(), StringSerializer.get());
+        Observable o = Observable.just(id).map(userId -> {
 
-        OperationResult<CqlResult<String, String>> operationResult = null;
-        try {
-            CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where id = ?;");
-            operationResult = cqlQuery.asPreparedStatement().withIntegerValue(id).execute();
-        } catch (ConnectionException e) {
-            logger.error("Exception Querting to Cassandra", e);
-            return Observable.error(e);
-        }
+            Keyspace keyspace = CassandraContext.getContext().getClient();
 
-        JSONObject content = new JSONObject();
-        try {
-            for (Row<String, String> row : operationResult.getResult().getRows()) {
-                JSONObject rowJson = new JSONObject();
-                rowJson.accumulate("id", row.getColumns().getColumnByName("id").getIntegerValue());
-                rowJson.accumulate("email", row.getColumns().getColumnByName("email").getStringValue());
-                rowJson.accumulate("name", row.getColumns().getColumnByName("name").getStringValue());
-                rowJson.accumulate("password", row.getColumns().getColumnByName("password").getStringValue());
-                rowJson.accumulate("surname", row.getColumns().getColumnByName("surname").getStringValue());
-                rowJson.accumulate("gender", row.getColumns().getColumnByName("gender").getStringValue());
-                content.accumulate("user", rowJson);
+            ColumnFamily<String, String> usersCf =
+                    new ColumnFamily<String, String>("users",
+                            StringSerializer.get(), StringSerializer.get(), StringSerializer.get());
+
+            OperationResult<CqlResult<String, String>> operationResult = null;
+
+            try {
+                CqlQuery cqlQuery = keyspace.prepareQuery(usersCf).withCql("select * from ms_solution_b.users where id = ?;");
+                operationResult = cqlQuery.asPreparedStatement().withIntegerValue(id).execute();
+            } catch (ConnectionException e) {
+                logger.error("Exception Querting to Cassandra", e);
+                return Observable.error(e);
             }
 
-        }catch (JSONException e){
-            logger.error("Exception Querting to Cassandra", e);
-            return Observable.error(e);
-        }
+            JSONObject content = new JSONObject();
+            try {
+                for (Row<String, String> row : operationResult.getResult().getRows()) {
+                    JSONObject rowJson = new JSONObject();
+                    rowJson.accumulate("id", row.getColumns().getColumnByName("id").getIntegerValue());
+                    rowJson.accumulate("email", row.getColumns().getColumnByName("email").getStringValue());
+                    rowJson.accumulate("name", row.getColumns().getColumnByName("name").getStringValue());
+                    rowJson.accumulate("password", row.getColumns().getColumnByName("password").getStringValue());
+                    rowJson.accumulate("surname", row.getColumns().getColumnByName("surname").getStringValue());
+                    rowJson.accumulate("gender", row.getColumns().getColumnByName("gender").getStringValue());
+                    content.accumulate("user", rowJson);
+                }
 
-        response.write(content.toString(), StringTransformer.DEFAULT_INSTANCE);
-        return response.close();
+            }catch (JSONException e){
+                logger.error("Exception Querting to Cassandra", e);
+                return Observable.error(e);
+            }
+
+            response.write(content.toString(), StringTransformer.DEFAULT_INSTANCE);
+            return response.close();
+        });
+
+
+       return o;
     }
 
     /**
