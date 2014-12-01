@@ -1,0 +1,14 @@
+@(friends: List[String])
+<p class="new-likes row">
+    @if(friends.size == 0) {
+         <span class="col-sm-10">You have none friends</span>
+    } else {
+        <span class="col-sm-10"><em>@friends.size</em> friends</span>
+        <ul>
+            @friends.map{ friend =>
+            <li>@friend</li>
+            }
+        </ul>
+    }
+
+</p>

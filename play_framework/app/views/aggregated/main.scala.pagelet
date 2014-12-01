@@ -12,11 +12,14 @@
               <h1 class="kh-title">Microservices Haven</h1>
               <p class="lead kh-description">Find a place for your microservices or a microservice for your place.</p>
             </div>
-            @views.pagelet.microServiceA.body()
+            @views.pagelet.microserviceuser.body()
           </div>
           <div class="col-sm-4 col-sm-offset-1 kh-sidebar">
+             <div class="sidebar-module sidebar-module-inset">
+                @views.pagelet.microserviceadd.body()
+             </div>
             <div class="sidebar-module sidebar-module-inset">
-             @views.pagelet.microServiceB.body()
+             @views.pagelet.microservicefriends.body()
             </div>
           </div>
         </div>
