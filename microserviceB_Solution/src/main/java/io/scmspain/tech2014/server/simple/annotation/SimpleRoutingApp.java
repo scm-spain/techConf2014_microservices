@@ -45,12 +45,14 @@ public interface SimpleRoutingApp {
         protected void configureServer() {
             bindRouter().toInstance(new SimpleRouter());
 
+            //Binds the interface to the implementation
             bind(AuthenticationService.class).to(AuthenticationServiceImpl.class);
-            interceptorSupport().forUri("/*").intercept(LoggingInterceptor.class);
-            interceptorSupport().forUri("/hello").interceptIn(AuthInterceptor.class);
-            interceptorSupport().forUri("/user").interceptIn(AuthInterceptor.class);
 
-            server().port(8887);
+            //Bind interceptor to certain URIs
+            //interceptorSupport().forUri(????).intercept(????);
+            //interceptorSupport().forUri(????).interceptIn(????);
+
+            //server().port(????);
         }
     }
 }
