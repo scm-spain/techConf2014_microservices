@@ -20,13 +20,13 @@ class MicroServiceAddCommand extends HystrixCommand[Long](MicroServiceAddCommand
 
   //This is the code that will run when
   def run(): Long = {
-    simulateNetworkLatency(500, 1250)
-    simulateFailUnderLoad(0.01)
-    simulateNetworkSpike(15, 650, 2250)
+    //simulateNetworkLatency(500, 1250)
+    //simulateFailUnderLoad(0.01)
+    //simulateNetworkSpike(15, 650, 2250)
 
     val host = "????"; //set your microservice host here
     val port = 0; //set your microservice port here
-    val action = "???" //set you action, for example /user/5
+    val action = "???" //set you action, for example user/5
     val queryString = "???"; //set your query string, for example add=1&add=2
     val verb = "????";
 
