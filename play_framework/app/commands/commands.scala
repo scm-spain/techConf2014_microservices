@@ -4,7 +4,6 @@ import com.google.common.collect.Lists
 import com.netflix.hystrix.HystrixCommand.Setter
 import com.netflix.hystrix.{HystrixCommand, HystrixCommandGroupKey, HystrixCommandKey}
 import com.netflix.loadbalancer.Server
-import controllers.RibbonCommand
 import models.User
 import play.api.libs.json.{JsValue, Json}
 
@@ -19,9 +18,9 @@ object MicroServiceUserCommand {
 class MicroServiceUserCommand extends HystrixCommand[User](MicroServiceUserCommand.key) with BogusHelper {
 
   def run(): User = {
-    simulateNetworkLatency(500, 2000)
-    simulateFailUnderLoad(0.01)
-    simulateNetworkSpike(15, 650, 2250)
+    //simulateNetworkLatency(500, 2000)
+    //simulateFailUnderLoad(0.01)
+    //simulateNetworkSpike(15, 650, 2250)
     val host = "localhost"; //set your microservice host here
     val port = 8887; //set your microservice port here
     val action = "user/4" //set you action, for example /user/5
@@ -97,6 +96,8 @@ class MicroServiceAddCommand extends HystrixCommand[Long](MicroServiceAddCommand
     val verb = "GET";
 
     val ribbon = new RibbonCommand(Lists.newArrayList(new Server(host, port)))
+
+    //val ribbon = new EurekaRibbonCommand("your microservice_name");
     val responseContent = ribbon.call(action, queryString, verb)
     val json: JsValue = Json.parse(responseContent)
     val result = (json \ "result").asOpt[Long]
