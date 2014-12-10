@@ -1,4 +1,4 @@
-package controllers;
+package commands;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,26 +35,20 @@ public class RibbonCommand {
         return LoadBalancerCommand.<String>builder()
                 .withLoadBalancer(loadBalancer)
                 .build()
-                .submit(new ServerOperation<String>() {
-                    @Override
-                    public Observable<String> call(Server server) {
-                        URL url;
-                        try {
-                            String uri = "http://" + server.getHost() + ":" + server.getPort() + "/" +getUri(action, queryString);
-                            url = new URL(uri);
-                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                            conn.setRequestMethod(verb);
-                            return Observable.just(getContent(conn));
-                        } catch (Exception e) {
-                            return Observable.error(e);
-                        }
+                .submit(server -> {
+                    URL url;
+                    try {
+                        String uri = "http://" + server.getHost() + ":" + server.getPort() + "/" +getUri(action, queryString);
+                        url = new URL(uri);
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setRequestMethod(verb);
+                        return Observable.just(getContent(conn));
+                    } catch (Exception e) {
+                        return Observable.error(e);
                     }
                 }).toBlocking().first();
     }
 
-    public LoadBalancerStats getLoadBalancerStats() {
-        return ((BaseLoadBalancer) loadBalancer).getLoadBalancerStats();
-    }
     private String getUri(String action, String queryString){
         String query = "";
         if(queryString != null && !queryString.isEmpty()){
