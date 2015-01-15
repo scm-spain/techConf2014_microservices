@@ -13,7 +13,7 @@ Mostrar el uso y funcionamiento de la arquitectura de microservicios y como se r
 
 ## Prerequisitos
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* Imagen virtualVox[vdi](https://s3-eu-west-1.amazonaws.com/techconf-2014/techconf2014.vdi) [vbox](https://s3-eu-west-1.amazonaws.com/techconf-2014/techconf2014.vbox)
+* Imagen virtualVox ==> [vdi](https://s3-eu-west-1.amazonaws.com/techconf-2014/techconf2014.vdi) [vbox](https://s3-eu-west-1.amazonaws.com/techconf-2014/techconf2014.vbox)
 
 ## Docs
 * [intro](https://drive.google.com/file/d/0By4fxJ7u8PquelNEcHIwRFBKY2c/view?usp=sharing)
